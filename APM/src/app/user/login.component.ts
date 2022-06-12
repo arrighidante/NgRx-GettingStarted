@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { AuthService } from './auth.service';
+import { getMaskUserName, State } from './state/user-reducer';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,10 +15,16 @@ export class LoginComponent implements OnInit {
 
   maskUserName: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService,
+    private router: Router,
+    private store: Store<State>) { }
 
   ngOnInit(): void {
-
+    this.store.select(getMaskUserName).subscribe(
+      maskUserName => {
+        this.maskUserName = maskUserName;
+      }
+    )
   }
 
   cancel(): void {

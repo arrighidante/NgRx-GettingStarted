@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { State } from '../store/product-reducer';
+import { getShowProductCode, State } from '../store/product-reducer';
 
 @Component({
   selector: 'pm-product-list',
@@ -37,9 +37,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
       error: err => this.errorMessage = err
     });
 
-    this.store.select('products').subscribe(
-      products => {
-        this.displayCode = products.showProductCode;
+    this.store.select(getShowProductCode).subscribe(
+      showProductCode => {
+        this.displayCode = showProductCode;
 
       }
     )

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { AuthService } from './auth.service';
-import { getMaskUserName, State } from './state/user-reducer';
+import { getMaskUserName, State } from './state/user.reducer';
 
 @Component({
   templateUrl: './login.component.html',
